@@ -30,32 +30,41 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.default_subspec = 'Core'
+  if ENV['IS_FRAMEWORK']
 
-  s.subspec 'Core' do |ss|
-    ss.dependency 'YHFoundation/YYModel'
-    ss.dependency 'YHFoundation/Utility'
-    ss.dependency 'YHFoundation/Addition'
+    s.ios.vendored_frameworks = 'YHFoundation-0.1.0/ios/YHFoundation.framework'
+    s.dependency 'YYModel'
 
-    ss.source_files  = 'YHFoundation/Classes/Core/*.{h,m}'
-    ss.public_header_files = 'YHFoundation/Classes/Core/*.h'
-  end
+  else 
 
-  s.subspec 'Addition' do |ss|
-    ss.source_files  = 'YHFoundation/Classes/Addition/*.{h,m}'
-    ss.public_header_files = 'YHFoundation/Classes/Addition/*.h'
-  end
+    s.default_subspec = 'Core'
 
-  s.subspec 'Utility' do |ss|
-    ss.dependency 'YHFoundation/YYModel'
-    ss.source_files  = 'YHFoundation/Classes/Utility/*.{h,m}'
-    ss.public_header_files = 'YHFoundation/Classes/Utility/*.h'
-  end
+    s.subspec 'Core' do |ss|
+      ss.dependency 'YHFoundation/YYModel'
+      ss.dependency 'YHFoundation/Utility'
+      ss.dependency 'YHFoundation/Addition'
 
-  s.subspec 'YYModel' do |ss|
-    ss.source_files  = 'YHFoundation/Classes/YYModel/*.{h,m}'
-    ss.public_header_files = 'YHFoundation/Classes/YYModel/*.h'
-    ss.dependency 'YYModel'
+      ss.source_files  = 'YHFoundation/Classes/Core/*.{h,m}'
+      ss.public_header_files = 'YHFoundation/Classes/Core/*.h'
+    end
+
+    s.subspec 'Addition' do |ss|
+      ss.source_files  = 'YHFoundation/Classes/Addition/*.{h,m}'
+      ss.public_header_files = 'YHFoundation/Classes/Addition/*.h'
+    end
+
+    s.subspec 'Utility' do |ss|
+      ss.dependency 'YHFoundation/YYModel'
+      ss.source_files  = 'YHFoundation/Classes/Utility/*.{h,m}'
+      ss.public_header_files = 'YHFoundation/Classes/Utility/*.h'
+    end
+
+    s.subspec 'YYModel' do |ss|
+      ss.source_files  = 'YHFoundation/Classes/YYModel/*.{h,m}'
+      ss.public_header_files = 'YHFoundation/Classes/YYModel/*.h'
+      ss.dependency 'YYModel'
+    end
+
   end
 
   
